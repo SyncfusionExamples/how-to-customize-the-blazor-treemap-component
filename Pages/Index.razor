@@ -1,0 +1,51 @@
+﻿@page "/"
+<SfTreeMap DataSource="Employees" TValue="Employee" WeightValuePath="EmployeeCount"
+                                  RenderDirection="RenderingMode.TopRightBottomLeft">
+    <TreeMapLeafItemSettings LabelPath="Country" Fill="#85C1E9"
+                             LabelFormat="${Country} (${JobDescription} - ${EmployeeCount})"
+                             InterSectAction="LabelAlignment.WrapByWord"
+                             LabelPosition="LabelPosition.TopCenter"
+                             Gap="7">
+        <TreeMapLeafLabelStyle Color="white" Size="14"></TreeMapLeafLabelStyle>
+        <TreeMapLeafBorder Color="white" Width="1"></TreeMapLeafBorder>
+    </TreeMapLeafItemSettings>
+    <TreeMapLevels>
+        <TreeMapLevel GroupPath="Country" Fill="#85C1E9" GroupGap="7" HeaderHeight="40"
+                      HeaderFormat="${Country}-${EmployeeCount}" HeaderAlignment="Alignment.Far">
+            <TreeMapLevelBorder Color="white" Width="0.5"></TreeMapLevelBorder>
+            <TreeMapHeaderStyle Color="white" Size="14"></TreeMapHeaderStyle>
+        </TreeMapLevel>
+        <TreeMapLevel GroupPath="JobDescription" Fill="#85C1E9" GroupGap="7" HeaderHeight="40"
+                      HeaderFormat="${JobDescription}-${EmployeeCount}" HeaderAlignment="Alignment.Far">
+            <TreeMapLevelBorder Color="white" Width="0.5"></TreeMapLevelBorder>
+            <TreeMapHeaderStyle Color="white" Size="14"></TreeMapHeaderStyle>
+        </TreeMapLevel>
+        <TreeMapLevel GroupPath="EmployeeCount" Fill="#85C1E9" GroupGap="7" HeaderHeight="40"
+                      HeaderFormat="Employee Count - ${EmployeeCount}" HeaderAlignment="Alignment.Far">
+            <TreeMapLevelBorder Color="white" Width="0.5"></TreeMapLevelBorder>
+            <TreeMapHeaderStyle Color="white" Size="14"></TreeMapHeaderStyle>
+        </TreeMapLevel>
+    </TreeMapLevels>
+</SfTreeMap>
+
+@code {
+    public class Employee
+    {
+        public string Country { get; set; }
+        public string JobDescription { get; set; }
+        public string JobGroup { get; set; }
+        public int EmployeeCount { get; set; }
+    };
+    public List<Employee> Employees = new List<Employee> {
+        new Employee { Country= "United States of America", JobDescription= "Sales Department", JobGroup= "Executive", EmployeeCount= 20 },
+        new Employee { Country= "United States of America", JobDescription= "Sales", JobGroup= "Analyst", EmployeeCount= 30 },
+        new Employee { Country= "United States of America", JobDescription= "Marketing Department", EmployeeCount= 40 },
+        new Employee { Country= "United States of America", JobDescription= "Management", EmployeeCount= 80 },
+        new Employee { Country= "India", JobDescription= "Technical", JobGroup= "Testers", EmployeeCount= 100 },
+        new Employee { Country= "India", JobDescription= "HR Executives", EmployeeCount= 30 },
+        new Employee { Country= "India", JobDescription= "Accounts", EmployeeCount= 40 },
+        new Employee { Country= "UK", JobDescription= "Technical", JobGroup= "Testers", EmployeeCount= 30 },
+        new Employee { Country= "UK", JobDescription= "HR Executives", EmployeeCount= 50 },
+        new Employee { Country= "UK", JobDescription= "Accounts", EmployeeCount= 60 }
+    };
+}
